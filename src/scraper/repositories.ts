@@ -36,7 +36,7 @@ export const repositories: Record<string, Repository> = {
 		branch: 'main'
 	},
 	APAP: {
-		url: 'https://github.com/YaelDillies/LeanAPAP',
+		url: 'https://github.com/YaelDillies/LeanAPAP.git',
 		projectDirs: [{ location: 'LeanAPAP', ignoredSubfolders: [] }],
 		name: 'Arithmetic Progressions - Almost Periodicity',
 		branch: 'master'
