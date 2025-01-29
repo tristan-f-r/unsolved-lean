@@ -4,8 +4,9 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev",
-		"build": "cp ./src/scraper/repositories.json ./static/ && vite build",
+		"dev": "PUBLIC_BUILD_TIME=$(date) PUBLIC_COMMIT=$(git rev-parse HEAD) vite dev",
+		"build:internal": "PUBLIC_BUILD_TIME=$(date) PUBLIC_COMMIT=$(git rev-parse HEAD) vite build",
+		"build": "cp ./src/scraper/repositories.json ./static/ && pnpm run build:internal",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",

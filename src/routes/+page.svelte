@@ -3,13 +3,17 @@
 	import { repositories } from '../scraper/repositories.js';
 	import rawData from '../scraper/repositories.json?raw';
 
+	import { PUBLIC_COMMIT, PUBLIC_BUILD_TIME } from '$env/static/public';
+
 	const data = JSON.parse(`[${rawData.split('\n').slice(0, -1).join(',')}]`);
 
 	onMount(() => {
 		console.log(
 			'The raw data is available in GitHub artifacts, or at ./repositories.json. For playing around with it, it is printed here for convenience.'
 		);
-		console.log('The first object is repository information, and the second is known holes (also available at ./repositories.json):');
+		console.log(
+			'The first object is repository information, and the second is known holes (also available at ./repositories.json):'
+		);
 
 		console.log(repositories);
 		console.log(data);
@@ -30,8 +34,8 @@
 			>proof_wanted</a
 		></code
 	>) in the <a href="https://lean-lang.org/">Lean4</a> theorem prover across established projects.
-
-    The raw data is also available in <a href="https://github.com/ndjson/ndjson-spec">ND-JSON</a> at <a href="./repositories.json">./repositories.json</a>.
+	The raw data is also available in <a href="https://github.com/ndjson/ndjson-spec">ND-JSON</a> at
+	<a href="./repositories.json">./repositories.json</a>.
 </p>
 
 <table>
@@ -76,6 +80,16 @@
 	</tbody>
 </table>
 
+<footer>
+	<a
+		href="https://leanprover.zulipchat.com/#narrow/channel/219941-Machine-Learning-for-Theorem-Proving/topic/Incentives.20.26.20sorry-filling.20leaderboard/near/494119396"
+		>inspired in zulip</a
+	>. built at {PUBLIC_BUILD_TIME}.
+	<a href="https://github.com/LeoDog896/unsolved-lean/commit/{PUBLIC_COMMIT}"
+		>commit {PUBLIC_COMMIT?.substring(0, 6)}</a
+	>
+</footer>
+
 <style>
 	table {
 		margin: 0 0 auto 0;
@@ -88,5 +102,10 @@
 
 	span[title] {
 		text-decoration: underline dotted;
+	}
+
+	footer {
+		margin-top: 1rem;
+		border-top: 1px solid black;
 	}
 </style>
