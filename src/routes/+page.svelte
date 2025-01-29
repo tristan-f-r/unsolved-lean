@@ -7,9 +7,9 @@
 
 	onMount(() => {
 		console.log(
-			'The raw data is available in GitHub artifacts. For playing around with it, it is printed here for convenience.'
+			'The raw data is available in GitHub artifacts, or at ./repositories.json. For playing around with it, it is printed here for convenience.'
 		);
-		console.log('The first object is repository information, and the second is known holes:');
+		console.log('The first object is repository information, and the second is known holes (also available at ./repositories.json):');
 
 		console.log(repositories);
 		console.log(data);
