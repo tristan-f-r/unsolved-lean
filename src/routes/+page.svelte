@@ -44,7 +44,7 @@
 			{@const repo = repositories[entry.name as string]}
 			<tr>
 				<td>
-					<a href="{repo.url.substring(0, ".git".length)}/tree/{repo.branch}/{entry.location}#L{entry.lineNumber}">
+					<a target="_blank" href="{repo.url.substring(0, -(".git".length))}/tree/{repo.branch}/{entry.location}#L{entry.lineNumber}">
 						{entry.location.replace('/', '.')}:{entry.lineNumber}
 					</a>
 				</td>
