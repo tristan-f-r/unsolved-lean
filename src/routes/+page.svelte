@@ -24,12 +24,14 @@
 </h1>
 
 <p>
-	A collection of holes (<code>sorry</code> and
+	An auto-updating collection of holes (<code>sorry</code> and
 	<code
 		><a href="https://leanprover-community.github.io/mathlib4_docs/Batteries/Util/ProofWanted.html"
 			>proof_wanted</a
 		></code
 	>) in the <a href="https://lean-lang.org/">Lean4</a> theorem prover across established projects.
+
+    The raw data is also available in <a href="https://github.com/ndjson/ndjson-spec">ND-JSON</a> at <a href="./repositories.json">./repositories.json</a>.
 </p>
 
 <table>
@@ -54,7 +56,21 @@
 						{entry.location.replaceAll('/', '.')}:{entry.lineNumber}
 					</a>
 				</td>
-				<td>{entry.cause}</td>
+				<td>
+					{#if entry.cause === 'proof_wanted'}
+						Proof Wanted (<span
+							title="proof_wanted is a declaration that is preferred over sorry, as it allows for tagging entire definitions - in the future, extra metadata may be associated with it."
+							>?</span
+						>)
+					{:else if entry.cause === 'sorry'}
+						Sorry (<span
+							title="sorry is usually used to mark holes in proofs, and is used in ongoing formalizations. Published libraries prefer proof_wanted."
+							>?</span
+						>)
+					{:else}
+						{entry.cause}
+					{/if}
+				</td>
 			</tr>
 		{/each}
 	</tbody>
@@ -68,5 +84,9 @@
 	h1 img {
 		display: inline-block;
 		height: 1.5rem;
+	}
+
+	span[title] {
+		text-decoration: underline dotted;
 	}
 </style>

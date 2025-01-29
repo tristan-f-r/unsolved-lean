@@ -22,5 +22,17 @@ export const repositories: Record<string, Repository> = {
 		projectDirs: [{ location: 'FLT', ignoredSubfolders: [] }],
 		name: "Fermat's Little Theorem",
 		branch: 'main'
+	},
+	BergschafBanachTarski: {
+		url: 'https://github.com/Bergschaf/banach-tarski.git',
+		projectDirs: [{ location: 'banach_tarski', ignoredSubfolders: [] }],
+		name: 'Banach Tarski',
+		branch: 'master'
+	},
+	InfinityCosmos: {
+		url: 'https://github.com/emilyriehl/infinity-cosmos.git',
+		projectDirs: [{ location: 'InfinityCosmos', ignoredSubfolders: [] }],
+		name: '∞-Cosmos',
+		branch: 'main'
 	}
 };
