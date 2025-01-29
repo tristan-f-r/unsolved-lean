@@ -1,6 +1,11 @@
+interface ProjectDirectory {
+    location: string;
+    ignoredSubfolders: string[]
+}
+
 interface Repository {
 	url: string;
-	projectDirs: string[];
+	projectDirs: ProjectDirectory[];
 	name: string;
 	branch: string;
 }
@@ -8,13 +13,13 @@ interface Repository {
 export const repositories: Record<string, Repository> = {
 	mathlib4: {
 		url: 'https://github.com/leanprover-community/mathlib4.git',
-		projectDirs: ['Mathlib'],
+		projectDirs: [{ location: 'Mathlib', ignoredSubfolders: ['Tactic'] }],
 		name: 'mathlib4',
 		branch: 'master'
 	},
 	FLT: {
 		url: 'https://github.com/imperialcollegelondon/FLT.git',
-		projectDirs: ['FLT'],
+		projectDirs: [{ location: 'FLT', ignoredSubfolders: [] }],
 		name: "Fermat's Little Theorem",
 		branch: 'main'
 	}

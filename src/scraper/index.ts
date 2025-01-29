@@ -54,28 +54,37 @@ const repositoriesJSONLocation = path.join(fileDirectory, 'repositories.json');
 fs.rm(repositoriesJSONLocation, { force: true });
 
 for (const [name, { projectDirs }] of Object.entries(repositories)) {
-	for (const projectDir of projectDirs) {
+	for (const { location: projectDir, ignoredSubfolders } of projectDirs) {
 		const spinner = yoctoSpinner({
 			text: `Scanning project ${projectDir} of repo ${name}`
 		}).start();
 
-		for await (const file of walk(path.resolve(repoDirectory, name, projectDir))) {
-			if (file.endsWith('.lean')) {
-				const holes = await parseLeanFile(file);
-				for (const hole of holes) {
-					const infoPacket = {
-						...hole,
-						name,
-						projectDir,
-						location: path.relative(path.resolve(repoDirectory, name), file)
-					};
+        const absoluteProjectDir = path.resolve(repoDirectory, name, projectDir)
+		fileLoop: for await (const file of walk(path.resolve(repoDirectory, name, projectDir))) {
+            for (const ignoredSubfolder of ignoredSubfolders) {
+                if (path.relative(absoluteProjectDir, file).startsWith(ignoredSubfolder)) {
+                    continue fileLoop;
+                }
+            }
 
-					fs.appendFile(repositoriesJSONLocation, JSON.stringify(infoPacket) + '\n', {
-						encoding: 'utf8',
-						flag: ''
-					});
-				}
-			}
+			if (!file.endsWith('.lean')) {
+                continue
+            }
+
+            const holes = await parseLeanFile(file);
+            for (const hole of holes) {
+                const infoPacket = {
+                    ...hole,
+                    name,
+                    projectDir,
+                    location: path.relative(path.resolve(repoDirectory, name), file)
+                };
+
+                fs.appendFile(repositoriesJSONLocation, JSON.stringify(infoPacket) + '\n', {
+                    encoding: 'utf8',
+                    flag: ''
+                });
+            }
 		}
 
 		spinner.success(`Finished scanning project ${projectDir} of repo ${name}`);
