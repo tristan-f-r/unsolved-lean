@@ -1,10 +1,17 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
     import { repositories } from '../scraper/repositories.js'
     import rawData from '../scraper/repositories.json?raw';
 
     const data = JSON.parse(`[${rawData.split("\n").slice(0, -1).join(",")}]`)
 
-    console.log(repositories, data)
+    onMount(() => {
+        console.log("The raw data is available in GitHub artifacts. For playing around with it, it is printed here for convenience.")
+        console.log("The first object is repository information, and the second is known holes:")
+
+        console.log(repositories)
+        console.log(data)
+    })
 </script>
 
 <h1>
