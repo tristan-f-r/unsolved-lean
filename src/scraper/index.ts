@@ -59,32 +59,32 @@ for (const [name, { projectDirs }] of Object.entries(repositories)) {
 			text: `Scanning project ${projectDir} of repo ${name}`
 		}).start();
 
-        const absoluteProjectDir = path.resolve(repoDirectory, name, projectDir)
+		const absoluteProjectDir = path.resolve(repoDirectory, name, projectDir);
 		fileLoop: for await (const file of walk(path.resolve(repoDirectory, name, projectDir))) {
-            for (const ignoredSubfolder of ignoredSubfolders) {
-                if (path.relative(absoluteProjectDir, file).startsWith(ignoredSubfolder)) {
-                    continue fileLoop;
-                }
-            }
+			for (const ignoredSubfolder of ignoredSubfolders) {
+				if (path.relative(absoluteProjectDir, file).startsWith(ignoredSubfolder)) {
+					continue fileLoop;
+				}
+			}
 
 			if (!file.endsWith('.lean')) {
-                continue
-            }
+				continue;
+			}
 
-            const holes = await parseLeanFile(file);
-            for (const hole of holes) {
-                const infoPacket = {
-                    ...hole,
-                    name,
-                    projectDir,
-                    location: path.relative(path.resolve(repoDirectory, name), file)
-                };
+			const holes = await parseLeanFile(file);
+			for (const hole of holes) {
+				const infoPacket = {
+					...hole,
+					name,
+					projectDir,
+					location: path.relative(path.resolve(repoDirectory, name), file)
+				};
 
-                fs.appendFile(repositoriesJSONLocation, JSON.stringify(infoPacket) + '\n', {
-                    encoding: 'utf8',
-                    flag: ''
-                });
-            }
+				fs.appendFile(repositoriesJSONLocation, JSON.stringify(infoPacket) + '\n', {
+					encoding: 'utf8',
+					flag: ''
+				});
+			}
 		}
 
 		spinner.success(`Finished scanning project ${projectDir} of repo ${name}`);

@@ -1,6 +1,6 @@
 interface ProjectDirectory {
-    location: string;
-    ignoredSubfolders: string[]
+	location: string;
+	ignoredSubfolders: string[];
 }
 
 interface Repository {

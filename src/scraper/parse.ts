@@ -37,7 +37,20 @@ export async function parseLeanFile(file: string): Promise<Hole[]> {
 		const line = lines[i];
 
 		for (const token of line) {
-			if (token.color === commentColor) continue;
+			// this is awkward: shikijs doesn't recognize -- comments! this is a bug
+			// so we need to stop when we find -- in the code
+
+			// TODO: this will not work if there is a string that contains --, i.e.
+			// doStuff "--"; sorry
+			// (instead of fixing this with another patch, this should be fixed by
+			// fixing shikijs's syntax highlighting)
+			if (token.content.includes('--')) {
+				break;
+			}
+
+			if (token.color === commentColor) {
+				continue;
+			}
 
 			for (const needle of needles) {
 				if (token.content.startsWith(needle)) {
