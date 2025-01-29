@@ -22,7 +22,7 @@
 </h1>
 
 <p>
-    A collection of holes (<code>sorry</code> and <code>proof_wanted</code>)
+    A collection of holes (<code>sorry</code> and <code><a href="https://leanprover-community.github.io/mathlib4_docs/Batteries/Util/ProofWanted.html">proof_wanted</a></code>)
     in the <a href="https://lean-lang.org/">Lean4</a> theorem prover across
     established projects.
 </p>
