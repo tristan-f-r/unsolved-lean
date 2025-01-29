@@ -34,5 +34,11 @@ export const repositories: Record<string, Repository> = {
 		projectDirs: [{ location: 'InfinityCosmos', ignoredSubfolders: [] }],
 		name: '∞-Cosmos',
 		branch: 'main'
+	},
+	APAP: {
+		url: 'https://github.com/YaelDillies/LeanAPAP',
+		projectDirs: [{ location: 'LeanAPAP', ignoredSubfolders: [] }],
+		name: 'Arithmetic Progressions - Almost Periodicity',
+		branch: 'master'
 	}
 };
