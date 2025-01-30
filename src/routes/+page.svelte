@@ -39,7 +39,7 @@
 			>proof_wanted</a
 		></code
 	>) in the <a href="https://lean-lang.org/">Lean4</a> theorem prover across established projects.
-	The raw list of wanted holes is also available in
+	The raw list of wanted proofs is also available in
 	<a href="https://github.com/ndjson/ndjson-spec">ND-JSON</a> at
 	<a href="./repositories.json">./repositories.json</a>.
 </p>
