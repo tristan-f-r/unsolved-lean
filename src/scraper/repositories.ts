@@ -40,5 +40,11 @@ export const repositories: Record<string, Repository> = {
 		projectDirs: [{ location: 'LeanAPAP', ignoredSubfolders: [] }],
 		name: 'Arithmetic Progressions - Almost Periodicity',
 		branch: 'master'
+	},
+	CamCombi: {
+		url: 'https://github.com/YaelDillies/LeanCamCombi.git',
+		projectDirs: [{ location: 'LeanCamCombi', ignoredSubfolders: [] }],
+		name: 'Cambridge Combinatorics in Lean',
+		branch: 'master'
 	}
 };
