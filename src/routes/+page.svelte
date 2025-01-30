@@ -46,7 +46,6 @@
 	<thead>
 		<tr>
 			<th>File</th>
-			<th>Type</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -54,30 +53,17 @@
 			{@const repo = repositories[entry.name as string]}
 			<tr>
 				<td>
-					<a
-						target="_blank"
-						href="{repo.url.slice(
-							0,
-							-'.git'.length
-						)}/tree/{repo.branch}/{entry.location}#L{entry.lineNumber}"
-					>
-						{entry.location.replaceAll('/', '.')}:{entry.lineNumber}
-					</a>
-				</td>
-				<td>
-					{#if entry.cause === 'proof_wanted'}
-						Proof Wanted (<span
-							title="proof_wanted is a declaration that is preferred over sorry, as it allows for tagging entire definitions - in the future, extra metadata may be associated with it."
-							>?</span
-						>)
-					{:else if entry.cause === 'sorry'}
-						Sorry (<span
-							title="sorry is usually used to mark holes in proofs, and is used in ongoing formalizations. Published libraries prefer proof_wanted."
-							>?</span
-						>)
-					{:else}
-						{entry.cause}
-					{/if}
+					<code>
+						<a
+							target="_blank"
+							href="{repo.url.slice(
+								0,
+								-'.git'.length
+							)}/tree/{repo.branch}/{entry.location}#L{entry.lineNumber}"
+						>
+							{entry.location.replaceAll('/', '.')}:{entry.lineNumber}
+						</a>
+					</code>
 				</td>
 			</tr>
 		{/each}
@@ -94,7 +80,7 @@
 	>
 </footer>
 
-<style>
+<style lang="scss">
 	table {
 		margin: 0 0 auto 0;
 	}
@@ -104,8 +90,8 @@
 		height: 1.5rem;
 	}
 
-	span[title] {
-		text-decoration: underline dotted;
+	code {
+		background-color: white;
 	}
 
 	footer {
