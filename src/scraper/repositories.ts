@@ -20,7 +20,7 @@ export const repositories: Record<string, Repository> = {
 	FLT: {
 		url: 'https://github.com/imperialcollegelondon/FLT.git',
 		projectDirs: [{ location: 'FLT', ignoredSubfolders: [] }],
-		name: "Fermat's Little Theorem",
+		name: "Fermat's Last Theorem",
 		branch: 'main'
 	},
 	BergschafBanachTarski: {
