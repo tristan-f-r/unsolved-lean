@@ -28,7 +28,7 @@
 </h1>
 
 <p>
-	An auto-updating collection of holes (<code>sorry</code> and
+	An auto-updating collection of wanted proofs (<code>sorry</code> and
 	<code
 		><a href="https://leanprover-community.github.io/mathlib4_docs/Batteries/Util/ProofWanted.html"
 			>proof_wanted</a
