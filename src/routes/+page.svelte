@@ -2,8 +2,11 @@
 	import { onMount } from 'svelte';
 	import { repositories } from '../scraper/repositories.js';
 	import rawData from '../scraper/repositories.json?raw';
+	import { pushState } from '$app/navigation';
+	import Modal from '../lib/Modal.svelte';
 
 	import { PUBLIC_COMMIT, PUBLIC_BUILD_TIME } from '$env/static/public';
+	import { page } from '$app/state';
 
 	const data = JSON.parse(`[${rawData.split('\n').slice(0, -1).join(',')}]`);
 
@@ -36,7 +39,8 @@
 			>proof_wanted</a
 		></code
 	>) in the <a href="https://lean-lang.org/">Lean4</a> theorem prover across established projects.
-	The raw data is also available in <a href="https://github.com/ndjson/ndjson-spec">ND-JSON</a> at
+	The raw list of wanted holes is also available in
+	<a href="https://github.com/ndjson/ndjson-spec">ND-JSON</a> at
 	<a href="./repositories.json">./repositories.json</a>.
 </p>
 
@@ -44,7 +48,32 @@
 	There are currently {data.length} wanted proofs.
 </p>
 
-<h2>Filter</h2>
+<h2>
+	Repositories
+	<button class="help" onclick={() => pushState('', { showModal: true })}>(?)</button>
+</h2>
+
+{#if page.state.showModal}
+	<Modal close={() => history.back()}>
+		<h1>Repositories</h1>
+
+		<p>
+			There are {Object.keys(repositories).length} repositories. More can be added by adding to the
+			<code
+				><a href="https://github.com/LeoDog896/unsolved-lean/blob/main/src/scraper/repositories.ts"
+					>repositories.ts</a
+				></code
+			>
+			file.
+		</p>
+
+		<ul>
+			{#each Object.values(repositories) as repository}
+				<li><a href={repository.url}>{repository.name}</a></li>
+			{/each}
+		</ul>
+	</Modal>
+{/if}
 
 <div class="repositories">
 	{#each Object.entries(repositories) as [id, { name }]}
@@ -143,5 +172,16 @@
 			height: 0;
 			width: 0;
 		}
+	}
+
+	button.help {
+		border: none;
+		background: none;
+		cursor: pointer;
+		display: inline-block;
+		text-decoration: underline dotted;
+		padding: 0;
+		margin: 0;
+		font-size: inherit;
 	}
 </style>
