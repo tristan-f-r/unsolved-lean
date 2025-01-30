@@ -18,6 +18,8 @@
 		console.log(repositories);
 		console.log(data);
 	});
+
+	let enabledRepositories = $state(Object.keys(repositories));
 </script>
 
 <h1>
@@ -42,33 +44,45 @@
 	There are currently {data.length} wanted proofs.
 </p>
 
-<table>
-	<thead>
-		<tr>
-			<th>File</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each data as entry}
+<h2>Filter</h2>
+
+<div class="repositories">
+	{#each Object.entries(repositories) as [id, { name }]}
+		<label>
+			{name}
+			<input
+				type="checkbox"
+				class="repository"
+				name="repositories"
+				value={id}
+				bind:group={enabledRepositories}
+			/>
+		</label>
+	{/each}
+</div>
+
+<h2>Wanted Proofs</h2>
+
+<ul>
+	{#each data as entry}
+		{#if enabledRepositories.includes(entry.name)}
 			{@const repo = repositories[entry.name as string]}
-			<tr>
-				<td>
-					<code>
-						<a
-							target="_blank"
-							href="{repo.url.slice(
-								0,
-								-'.git'.length
-							)}/tree/{repo.branch}/{entry.location}#L{entry.lineNumber}"
-						>
-							{entry.location.replaceAll('/', '.')}:{entry.lineNumber}
-						</a>
-					</code>
-				</td>
-			</tr>
-		{/each}
-	</tbody>
-</table>
+			<li>
+				<code>
+					<a
+						target="_blank"
+						href="{repo.url.slice(
+							0,
+							-'.git'.length
+						)}/tree/{repo.branch}/{entry.location}#L{entry.lineNumber}"
+					>
+						{entry.location.replaceAll('/', '.')}:{entry.lineNumber}
+					</a>
+				</code>
+			</li>
+		{/if}
+	{/each}
+</ul>
 
 <footer>
 	<a
@@ -97,5 +111,37 @@
 	footer {
 		margin-top: 1rem;
 		border-top: 1px solid black;
+	}
+
+	.repositories {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+
+		label {
+			background-color: rgba(0, 0, 0, 0.1);
+			padding: 0.25rem;
+			cursor: pointer;
+
+			&:hover {
+				background-color: rgba(0, 0, 0, 0.2);
+			}
+
+			&:active {
+				background-color: rgba(0, 0, 0, 0.3);
+			}
+
+			&:has(> input:checked) {
+				background-color: #adffc1;
+			}
+		}
+
+		input {
+			position: absolute;
+			opacity: 0;
+			cursor: pointer;
+			height: 0;
+			width: 0;
+		}
 	}
 </style>
