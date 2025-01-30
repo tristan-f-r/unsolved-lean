@@ -38,6 +38,10 @@
 	<a href="./repositories.json">./repositories.json</a>.
 </p>
 
+<p>
+	There are currently {data.length} wanted proofs.
+</p>
+
 <table>
 	<thead>
 		<tr>
