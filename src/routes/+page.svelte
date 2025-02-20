@@ -4,6 +4,7 @@
 	import rawData from '../scraper/repositories.json?raw';
 	import { pushState } from '$app/navigation';
 	import Modal from '../lib/Modal.svelte';
+	import * as lz from 'lz-string'
 
 	import { PUBLIC_COMMIT, PUBLIC_BUILD_TIME } from '$env/static/public';
 	import { page } from '$app/state';
@@ -107,6 +108,10 @@
 					>
 						{entry.location.replaceAll('/', '.')}:{entry.lineNumber}
 					</a>
+
+					{#if entry.name === 'mathlib4'}
+						(<a href="https://live.lean-lang.org/#codez={lz.compressToBase64(entry.content)}">playground</a>)
+					{/if}
 				</code>
 			</li>
 		{/if}

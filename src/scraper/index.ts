@@ -73,11 +73,14 @@ for (const [name, { projectDirs }] of Object.entries(repositories)) {
 
 			const holes = await parseLeanFile(file);
 			for (const hole of holes) {
+				const location = path.relative(path.resolve(repoDirectory, name), file);
+				
 				const infoPacket = {
 					...hole,
 					name,
 					projectDir,
-					location: path.relative(path.resolve(repoDirectory, name), file)
+					location,
+					content: await fs.readFile(file, "utf8")
 				};
 
 				fs.appendFile(repositoriesJSONLocation, JSON.stringify(infoPacket) + '\n', {

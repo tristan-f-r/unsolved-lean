@@ -30,6 +30,7 @@
 		"eslint-plugin-svelte": "^2.46.1",
 		"globals": "^15.14.0",
 		"highlightjs-lean": "^1.2.0",
+		"lz-string": "^1.5.0",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
 		"sass": "^1.83.4",
