@@ -110,7 +110,7 @@
 					</a>
 
 					{#if entry.name === 'mathlib4'}
-						(<a href="https://live.lean-lang.org/#codez={lz.compressToBase64(entry.content)}">playground</a>)
+						(<a href="https://live.lean-lang.org/#codez={lz.default.compressToBase64(entry.content)}">playground</a>)
 					{/if}
 				</code>
 			</li>
