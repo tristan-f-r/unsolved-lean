@@ -23,11 +23,11 @@ export const repositories: Record<string, Repository> = {
 		name: "Fermat's Last Theorem",
 		branch: 'main'
 	},
-	BergschafBanachTarski: {
-		url: 'https://github.com/Bergschaf/banach-tarski.git',
-		projectDirs: [{ location: 'banach_tarski', ignoredSubfolders: [] }],
-		name: 'Banach Tarski',
-		branch: 'master'
+	Seymour: {
+		url: 'https://github.com/Ivan-Sergeyev/seymour.git',
+		projectDirs: [{ location: 'Seymour', ignoredSubfolders: [] }],
+		name: 'Seymour',
+		branch: 'main'
 	},
 	InfinityCosmos: {
 		url: 'https://github.com/emilyriehl/infinity-cosmos.git',
