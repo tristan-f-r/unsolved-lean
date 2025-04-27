@@ -46,5 +46,23 @@ export const repositories: Record<string, Repository> = {
 		projectDirs: [{ location: 'LeanCamCombi', ignoredSubfolders: [] }],
 		name: 'Cambridge Combinatorics in Lean',
 		branch: 'master'
+	},
+	Carleson: {
+		url: 'https://github.com/fpvandoorn/carleson.git',
+		projectDirs: [{ location: 'Carleson', ignoredSubfolders: [] }],
+		name: 'Carleson',
+		branch: 'master'
+	},
+	PFR: {
+		url: 'https://github.com/teorth/pfr.git',
+		projectDirs: [{ location: 'PFR', ignoredSubfolders: [] }],
+		name: 'PFR',
+		branch: 'master'
+	},
+	FormalBook: {
+		url: 'https://github.com/mo271/FormalBook.git',
+		projectDirs: [{ location: 'FormalBook', ignoredSubfolders: [] }],
+		name: 'Formal BOOK',
+		branch: 'main'
 	}
 };
