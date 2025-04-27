@@ -179,6 +179,11 @@
 		}
 	}
 
+	ul {
+		word-wrap: break-word;
+		hyphens: auto;
+	}
+
 	button.help {
 		border: none;
 		background: none;
